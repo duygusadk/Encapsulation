@@ -8,6 +8,11 @@ public class User {
     private String password;
     private List<Booking> bookingHistory = new ArrayList<>();
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUsername() {
         return username;
     }

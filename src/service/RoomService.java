@@ -9,15 +9,15 @@ import java.util.List;
 
 public class RoomService {
 
-    private List<Room>rooms;
+    private List<Room> rooms;
 
 
-    public List<Room> checkAvailableRooms(String roomType, LocalDate checkIn, LocalDate checkOut){
+    public List<Room> checkAvailableRooms(String roomType, LocalDate checkIn, LocalDate checkOut) {
 
         List<Room> availableRooms = new ArrayList<>();
 
-        for(var i:rooms){
-            if(i.getType().equalsIgnoreCase(roomType)&& i.getStatus().equalsIgnoreCase("available")){
+        for (var i : rooms) {
+            if (i.getType().equalsIgnoreCase(roomType) && i.getStatus().equalsIgnoreCase("available")) {
                 availableRooms.add(i);
             }
         }
@@ -25,18 +25,14 @@ public class RoomService {
         return availableRooms;
     }
 
-   /* public void updateStatus(int roomNumber) {
-        for (Room room : rooms) {
+    public Room getRoomByRoomNumber(int roomNumber) {
+        for (var room : rooms) {
             if (room.getRoomNumber() == roomNumber) {
-                room.setStatus("booked");
-
+                return room;
             }
         }
-    }*/
-
-
-
-
+        return null;
+    }
 
 
 }
