@@ -4,15 +4,37 @@ import service.BookingService;
 import service.RoomService;
 import service.UserService;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        String filePath="./src/1.csv";
+
+        List<Room> rooms = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(String.valueOf(filePath)))) {
+            String line= br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                rooms.add(new Room(
+                        Integer.parseInt(data[0]),
+                        data[1],
+                        Double.parseDouble(data[2]),
+                        Double.parseDouble(data[3]),
+                        data[4]
+                ));
+            }
+        }
 
         BookingService bookingService = new BookingService();
-        RoomService roomService = new RoomService();
+        RoomService roomService = new RoomService(rooms);
         UserService userService = new UserService();
 
         Scanner sc = new Scanner(System.in);
@@ -74,7 +96,7 @@ public class Main {
         UserService userService = new UserService();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("1.Login \n 2.Register");
+        System.out.println("1.Login \n2.Register");
         int num = Integer.parseInt(sc.nextLine());
         //check invalid or not
 

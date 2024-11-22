@@ -9,7 +9,10 @@ import java.util.List;
 
 public class RoomService {
 
-    private List<Room> rooms;
+    private final List<Room> rooms;
+    public RoomService(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 
 
     public List<Room> checkAvailableRooms(String roomType, LocalDate checkIn, LocalDate checkOut) {

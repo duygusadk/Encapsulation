@@ -16,20 +16,26 @@ public class UserService {
     }
 
     public boolean registerUser(String userName, String password) {
-        for (var user : users) {
-            if (user.getUsername().equals(userName)) {
-                return false;
+        if(!users.isEmpty()) {
+            for (var user : users) {
+                if (user.getUsername().equals(userName)) {
+                    return false;
+                }
             }
+            users.add(new User(userName, password));
+            return true;
         }
-        users.add(new User(userName, password));
-        return true;
+        return false;
     }
 
     public User getUserByName(String userName) {
-        for (User user : users) {
-            if (user.getUsername().equals(userName)) {
-                return user;
+        if(users.isEmpty()) {
+            for (User user : users) {
+                if (user.getUsername().equals(userName)) {
+                    return user;
+                }
             }
+            return null;
         }
         return null;
     }

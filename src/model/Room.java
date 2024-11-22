@@ -8,6 +8,14 @@ public class Room {
     private double cancellationFee;
     private String status;
 
+    public Room(int roomNumber, String type, double pricePerNight, double cancellationFee, String status) {
+        this.roomNumber = roomNumber;
+        this.type = type;
+        this.pricePerNight = pricePerNight;
+        this.cancellationFee = cancellationFee;
+        this.status = status;
+    }
+
     public int getRoomNumber() {
         return roomNumber;
     }
